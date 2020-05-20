@@ -1,0 +1,449 @@
+//ADK PCÜ Ü-3
+
+/*
+________________________________________________________________________________
+Globale Variablen/Funktionen*/
+
+
+/////////////////////////////Arrays
+
+var P =
+[
+3, 9, 6, 1, 5, 4
+]
+
+
+var S =
+[
+13, 13, 13, 14, 15, 15, 16, 16, 16, 17, 18, 34, 45, 55, 66
+]
+
+var A =
+[
+12, 13, 14, 15, 16, 17, 54, 56, 59, 60, 61, 70
+]
+
+
+var bin =
+[
+0,1,0,1,1,1
+]
+
+
+/////////////////////////////Funktionen
+
+//Zum ausgeben eines Arrays
+func printA (A[1..n])
+    for i = 1 to n
+        print A[i] + " // Index: " + i
+        
+
+//Gibt Index des max. Wertes innerhalb vom Bereich s bis n eines Arrays back
+func maxi(A[1..n], s)
+    var index = s
+    for i = s+1 to n 
+        if A[i] > A[index]
+            index = i
+    return index
+    
+//Gibt Index des min. Wertes innerhalb vom Bereich r bis n eines Arrays back
+func mini(A[1..n], r)
+    var index = r
+    for i = r+1 to n 
+        if A[i] < A[index]
+            index = i
+    return index
+
+//Tauscht die Werte im Array mit den Indexen die für o und p eingetragen werden
+func swap(A[1..n], o, p)
+    var temp = A[o]
+    A[o] = A[p]
+    A[p] = temp
+    
+//Für Insertion-Sort absteigend
+func insertidown(A[1..n],i)
+    var temp = A[i]
+    var comp = i + 1
+    while (comp<=n) && (temp<A[comp])
+        A[comp - 1] = A[comp]
+        comp = comp + 1
+    A[comp - 1] = temp
+    return 0
+/*temp = temporary, comp = compare*/
+//insertidown(P, 2)
+//printA(P)
+
+//Für Insertion-Sort aufsteigend
+func insertiup(A[1..n],i)
+    var temp = A[i]
+    var comp = i - 1
+    while (comp>=1) && (temp<A[comp])
+        A[comp + 1] = A[comp]
+        comp = comp - 1
+    A[comp + 1] = temp
+    return 0
+/*temp = temporary, comp = compare*/
+
+//Für division ohne Rest, bzw. mit gerundeten Ergebnissen
+func div (a,b)
+    var q = 0
+    while a >= b
+        a = a - b
+        q = q + 1
+    return q
+
+//Binäre Suche
+func bin_search (A[1..n],key)
+    var l = 1
+    var r = n
+    var m = 0
+    while l <= r
+        m = div ((l+r),2)
+        if A[m] == key
+            return m
+        if A[m] > key
+            r = m -1
+        if A[m] < key
+            l = m+1
+    return 0
+
+
+
+/*
+________________________________________________________________________________
+Aufgaben*/
+
+/*
+________________________________________________
+3.1 - Selection Sort*/
+
+/*
+________________________________
+Aufgabe 3.1.1
+func selectionsort_ab(A[1..n])
+    var max = 0
+    for k=1 to n-1
+        max = maxi(A, k)
+        swap(A,k,max)
+selection_sort(P)
+printA(P)*/
+
+
+/*
+________________________________
+Aufgabe 3.1.2
+func selectionsort_auf(A[1..n])
+    var min = 0
+    for k=1 to n-1
+        min = mini(A, k)
+        swap(A,k,min)
+selectionsort_auf(P)
+printA(P)*/
+
+
+
+/*
+________________________________
+Aufgabe 3.1.2 
+printA(P)
+func selection_sort(A[1..n])
+    var min = 0
+    var temp = 0
+    for k=1 to n-1
+        min = k
+        for i = k+1 to n
+            if A[i] < A[min]
+                min = i
+        print "min ist " + min
+        temp = A[k]
+        print "temp: " + temp
+        A[k] = A[min]
+        print "A[k]: " + A[k] + " //k ist " + k
+        A[min] = temp
+        print "A[min]: " + A[min] + " //min ist " + min
+        print "Durchlauf " + k
+        printA(P)
+        print "___________________________"
+        if k == 2
+            return 0
+selection_sort(P)*/
+/*KEINE AHUNG WO DER FEHLER IST ICH FIND DEN EINFACH NICHT, ich bin
+den Code logisch auf Papier nachgegangen Step-byStep, muss eig. 
+funktionieren...*/
+
+
+
+
+/*
+________________________________________________
+3.2 - Insertion Sort*/
+/*
+________________________________
+Aufgabe 3.2.1
+func insersort_ab(A[1..n])
+    var idwn = n - 1
+    for i = 2 to n
+        print "Runde " + (i-1)
+        insertidown(P,idwn)
+        idwn = idwn - 1
+    return 0
+insersort_ab(P)
+printA(P)*/
+
+
+/*
+________________________________
+Aufgabe 3.2.2
+func insersort_auf(A[1..n])
+    for i = 2 to n
+        print "Runde " + (i-1)
+        insertiup(P,i)
+    return 0
+insersort_auf(P)
+//printA(P)*/
+
+
+/*
+________________________________
+Aufgabe 3.2.3
+func insertion_sort(A[1..n])
+    var compcount = 0
+    if n == 1
+        print "Vergleich 1"
+        print "Das Array besteht nur aus einem Element. Fertig."
+        return 0
+    for i = 2 to n
+        var temp = A[i]
+        var comp = i - 1
+        compcount = compcount + 1
+        print "Vergleich " + compcount
+        while (comp>=1) && (temp<A[comp])
+            compcount = compcount + 1
+            print "Vergleich " + compcount
+            A[comp + 1] = A[comp]
+            comp = comp - 1
+        A[comp + 1] = temp
+    return 0
+insertion_sort(P)
+print "Das Array ist nun..."
+printA(P)*/
+/*
+Die Antworten auf die Aufgaben 3.2.3 a-b sind...
+a) 1x
+b) 1x
+c) 2x
+d) 3x
+e) 5x
+f) 9x
+*/
+
+
+
+
+
+/*
+________________________________________________
+3.3 - Sortieren*/
+/*
+________________________________
+Aufgabe 3.3.1*/
+/*
+a) Selection Sort best case: O(n^2)
+b) Selection Sort worst case: O(n^2)
+c) Insertion Sort best case: O(n*log2(n))
+d) Insertion Sort worstcase: O(n^2)
+*/
+
+
+/*
+________________________________
+Aufgabe 3.3.2*/
+/*
+a) Insertion Sort
+b) Merge Sort
+c) Selection Sort
+d) Insertion Sort
+e) Insertion Sort
+f) Selection Sort
+*/
+
+
+/*
+________________________________
+Aufgabe 3.3.3*/
+/*
+a) A[1,2,3,4]
+b) Nein, als Beispiel A[2,3,4,1] wird dann zu A[2,1,3,4]
+*/
+
+
+/*
+________________________________
+Aufgabe 3.3.4*/
+/*
+func twosort(A[1..n]) 
+    var einsen = 0 
+    for i = 1 to n
+        einsen = einsen + A[i] 
+    for j = 1 to n 
+        if ( einsen > 0 )
+            A[n-j+1] = 1
+            einsen = einsen -1 
+        else 
+            A[n-j+1] = 0
+    return A
+print twosort(bin)
+*/
+/*
+"einsen" wird zur Anzahl der einsen.
+Bis die Anzahl also "einsen" in der 2. Schleife wieder auf 
+0 geht, werden die einsen bei A von hinten nach vorne gesetzt.
+Damit beim indexieren "A[n-j+1]" am Ende keine null entsteht und einen
+Out-of-Array-Error erzeugt, gibt es die +1 am Ende.
+*/
+
+
+/*
+________________________________
+Aufgabe 3.3.5*/
+/*
+func twosort(A[1..n]) 
+    var nullen = 0 
+    for i = 1 to n
+        if A[i] == 0
+            nullen = nullen + 1 
+    for j = 1 to n 
+        if nullen > 0
+            A[j] = 0
+            nullen = nullen -1 
+        else 
+            A[j] = 1
+    return A
+twosort(bin)
+printA(bin)
+*/
+/*
+"nullen" wird zur Anzahl der nullen.
+Bis die Anzahl also "nullen" in der 2. Schleife wieder auf 
+0 geht, werden nullen von vorne nach hinten gesetzt.
+Beim indexieren kann in diesem fall kein Out-of-Array-Error passieren.
+*/
+
+
+/*
+________________________________
+Aufgabe 3.3.6*/
+/*
+func sorted(A[1..n])
+    for i = 1 to n-1
+        if A[i] > A[i+1]
+            return 0
+    return 1
+print sorted(bin)
+*/
+
+/*
+O-Notation: O(n)
+Diese Funktion gibt für monoton und streng monoton steigend sortierte Arrays
+das Ergebnis 1.
+Bei nur streng monoton sortierten steigenden Arrays -> Ergebnis = 1 muss man
+im Vergleich ein >= statt > schreiben.
+*/
+
+
+
+
+/*
+________________________________________________
+3.4 - Suchen*/
+/*
+________________________________
+Aufgabe 3.4.1*/
+/*
+a) 9 Vgl.
+
+b) 1 Vgl.
+
+c) 
+[05/09/2020 15-02-13]> 12 // Index: 1
+[05/09/2020 15-02-13]> 13 // Index: 2
+[05/09/2020 15-02-13]> 17 // Index: 3
+[05/09/2020 15-02-13]> 23 // Index: 4
+[05/09/2020 15-02-13]> 28 // Index: 5
+[05/09/2020 15-02-13]> 29 // Index: 6
+[05/09/2020 15-02-13]> 39 // Index: 7
+[05/09/2020 15-02-13]> 42 // Index: 8
+[05/09/2020 15-02-13]> 43 // Index: 9
+[05/09/2020 15-02-13]> 54 // Index: 10
+[05/09/2020 15-02-13]> 68 // Index: 11
+[05/09/2020 15-02-13]> 72 // Index: 12
+[05/09/2020 15-02-13]> 88 // Index: 13
+[05/09/2020 15-02-13]> 93 // Index: 14
+[05/09/2020 15-02-13]> 96 // Index: 15
+
+d)
+Schritt 1 / a= 01 / b= 15 / m= 08 / Vergleich: 29<42
+Schritt 2 / a= 01 / b= 07 / m= 04 / Vergleich: 29>23
+Schritt 3 / a= 05 / b= 07 / m= 06 / Vergleich: 29=29
+
+e)
+Schritt 1 / a= 01 / b= 15 / m= 08 / Vergleich: 88>42
+Schritt 2 / a= 08 / b= 15 / m= 11 / Vergleich: 88>68
+Schritt 3 / a= 12 / b= 15 / m= 13 / Vergleich: 88=88
+*/
+
+
+/*
+________________________________
+Aufgabe 3.5.1*/
+
+/*
+//a)
+func nullen(A[1..n])
+    var counter = bin_search(A,0)
+    for i = counter +1 to n-1
+        if (A[i] == 0) && (A[1] == 0)
+            counter = counter + 1
+        else
+            return counter
+//print nullen(A)
+*/
+/*
+Der Algorithmuss inkrementiert das Ergebnis aus bin_search
+bis die nächste Zahl ungleich null ist, dann endet der Alg.
+Die Laufzeit ist also die die Anzahl der binären Suche + Anzahl an nullen nach
+diesem Ergebnis.
+*/
+
+
+/*
+//b)
+func anzahlx(A[1..n],x)
+    var counter = 0
+    var binvar = bin_search(A,x)
+    for i = binvar to n
+        if A[i] == x 
+            counter = counter + 1
+    binvar = binvar - 1
+    while A[binvar] == x
+        counter = counter + 1
+        if binvar == 1
+            return counter
+        binvar = binvar - 1
+    return counter
+print anzahlx(S,13)
+*/
+/*
+- Counter gibt die Anzahl an x an
+- binvar gibt die Stelle an, and er bin_search das erste mal x findet
+- die for-Schleife fängt an beim Index binvar zu zählen, geht nach rechts
+- als nächstes wird binvar auf den Wert vor binvar gesetzt um den linken Teil
+zu prüfen, allerdings...
+- ...mit einer While-schleife, da die For-Schleife zurück hier noch nicht
+funktioniert, A. Welter 10.05.2020
+*/
+
+
+/*
+________________________________
+Aufgabe 3.5.1*/

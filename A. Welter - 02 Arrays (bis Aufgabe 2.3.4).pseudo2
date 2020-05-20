@@ -1,0 +1,753 @@
+// ADKPCÜ/02 - Arrays
+
+
+//________________________________________
+//Das sind die Arrays
+var A =
+[
+1,0,0,0
+]
+
+var bank =
+[
+4, 9, 1, 3, 2, 6, 8, 0, 0, 9, 9, 2, 6, 3, 9, 6
+]
+
+
+var dez = 
+[
+1,2,8
+]
+
+var dez2 = 
+[
+1,2,2
+]
+
+var dezresult = 
+[
+0,0,0
+]
+
+
+var bin =
+[
+0,0,0,0
+]
+
+
+var bin1 =
+[
+0,1,1,1,0,0,1,0,0,0
+]
+
+
+var bin2 =
+[
+0,0,1,0,1,1,0,0,0,1
+]
+
+
+var binresult =
+[
+0,0,0,0,0,0,0,0,0,0
+]
+
+var binuber =
+[
+0,0,0,0,0,0,0,0,0,0
+]
+
+//________________________________________
+//Funktionen die in anderen Funktionen nützlich sind
+func printArray(X[1..n])
+    for i=1 to n
+        print X[i]
+// Ausdrucken des Arrays
+
+
+func odd(a)
+    while a > 1
+        a = a - 2
+    return a
+
+//printArray(A)
+
+
+func swap(X[1..n],a,b)
+    var temp = X[a]
+    X[a] = X[b]
+    X[b] = temp
+//Tausche zwei Werte im Array
+
+
+func anzahl_even(A[1..n])
+    var anzahl = 0
+    for i = 1 to n
+        if odd (A[i]) == 0
+            anzahl = anzahl + 1
+    return anzahl
+//Errechnet die Anzahl an geraden Zahlen im Array
+
+
+func maxwert(A[1..n])
+    var max = A[1]
+    for i=2 to n
+        if A[i] > max
+            max = A [i]
+    return max
+//Findet den größten Wert aus dem Array
+
+
+func minwert(A[1..n])
+    var min = A[1]
+    for i=2 to n
+        if A[i] < min
+            min = A [i]
+    return min
+//Findet den kleinsten Wert aus dem Array
+
+
+func editarrayA(A[1..n],a,b,c,d)
+    A[1] = a
+    A[2] = b
+    A[3] = c
+    A[4] = d
+    return 0
+//Für Printbefehleingabe
+
+func editarraydez(X[1..n],a,b,c)
+    dez[1] = a
+    dez[2] = b
+    dez[3] = c
+    return 0
+//Für Printbefehleingabe
+
+func editarraybin(X[1..n],a,b,c,d)
+    bin[1] = a
+    bin[2] = b
+    bin[3] = c
+    bin[4] = d
+    return 0
+//Für Printbefehleingabe
+
+
+/*
+__________________________________________
+Aufgabe 2.1.1*/
+//Requires editarrayA
+/*func anzahl_null(X[1..n],a,b,c,d)
+    editarrayA(A,a,b,c,d)
+    var z = 0
+    for i=1 to n
+        if A[i] == 0
+            z = z + 1
+    return z
+
+print anzahl_null (A,0,2,0,0)*/
+
+/* 
+Die For-Schleife wird n mal ausgeführt. 
+Tests erfolgreich.
+Input: (A,0,2,0,4)
+Output: 2
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.2
+//Requires printArray
+func put_last(A[1..n],x)
+    for i=1 to n-1
+        A[i] = A[i+1]
+    A[n] = x
+    printArray(A)
+
+put_last (A,5)*/
+
+// Die For-Schleife wird n-1 mal ausgeführt. 
+// Tests erfolgreich.
+// Input: A=[4,3,2,6]; x=5 
+// Output = 3,2,6,5
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.3
+//Requires printArray
+func put_first (A[1..n],x)
+    for i=0 to n-2
+        A[n-i] = A[n-(i+1)]
+    A[1] = x
+    printArray(A)
+
+put_first (A,7)*/
+
+/*
+Die For-Schleife wird n-1 (beginnt dieses mal ab Zahl Null) mal ausgeführt. 
+Tests erfolgreich.
+Input: A=[4,3,2,6]; x=5 
+Output = 3,2,6,5
+*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.4
+// Requires swap, printArray
+
+func mirror(A[1..n])
+    var z = n
+    for i=1 to n/2
+        swap(A,i,z)
+        z = z - 1
+    printArray(A)
+
+mirror(A)*/
+
+/*
+Die For-Schleife wird n/2 mal ausgeführt. 
+Tests erfolgreich.
+Input: A=[4,3,2,6] 
+Output = 6,2,3,4
+*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.5
+//Requires maxwert, minwert
+
+func max_diff(A[1..n])
+    var diff = maxwert(A) - minwert(A)
+    return diff
+
+print max_diff(A)*/
+
+
+/*
+Tests erfolgreich.
+Input: A=[2,5,3,4] 
+Output = 3
+*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.6
+func min_diff(A[1..n])
+    var min = A[1] - A[2]
+    if min < 0
+        min = min * (-1)
+    var temp = 0
+    
+    for i = 1 to n
+        if i > 1
+            for j = 1 to i - 1
+                temp = A[i] - A[j]
+                if temp < 0
+                    temp = temp * (-1)
+                if temp < min
+                    min = temp
+        if i < n
+            for k = i + 1 to n
+                temp = A[i] - A[k]
+                if temp < 0
+                    temp = temp * (-1)
+                if temp < min
+                    min = temp
+    return min
+
+
+print min_diff(A)*/
+/*
+ERKLÄRUNG
+for i um alle Zahlen durchzukauen
+if i > 1 für Zahlen über i, schließt 1 aus
+if i < n für Zahlen unter n, schließt n aus
+*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.7
+func missing (X[1..n])
+    var total = 0
+    var totalreal = 0
+    var miss = 0
+    
+    for i = 0 to n
+        total = total + i
+    for k = 1 to n
+        totalreal = totalreal + A[k]
+
+    miss = total - totalreal
+    
+    return miss
+
+
+print missing(A)*/
+
+/*
+Test:
+n = 4  A = 1, 4, 2, 0 -> Ergebnis: 3
+
+
+ERKLÄRUNG
+- total steht für die eigentliche Gesamtsumme aller addierten Zahlen X[1..n+1]
+- totalreal steht für die tatsächliche Gesamtsumme aller in X(1..n) enthaltenen
+Elemente.
+- Die Differenz total minus totalreal ergibt immer die fehlende Zahl als
+fehlendes Element in X(1..n)
+*/
+
+
+
+    
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.8
+//Requires odd, anzahl_even, swap, printArray
+
+func even_first(X[1..n])
+    var s = n
+    if anzahl_even(A) != n && anzahl_even(A) != 0
+        for i = 1 to anzahl_even(A)
+            while odd(A[i]) != 0 && s != 0
+                swap(A,i,s)
+                s = s - 1
+    printArray(A)
+
+even_first(A)*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.9
+func anzahl_null2(X[1..n])
+    var anzahl = 0
+    var temp = 0
+    for i = 1 to n - 1
+        for j = i + 1 to n
+            temp = A[i] + A[j]
+            if temp == 0
+                anzahl = anzahl + 1
+    return anzahl
+
+print anzahl_null2(A)*/
+
+
+/*
+Test:
+n = 4  A = -3,-3,-3,3 -> Ergebnis: 4
+*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.10
+func minwert(A[1..n])
+    var min = A[1]
+    for i=2 to n
+        if A[i] < min
+            min = A [i]
+    return min
+
+func mising2 (X[1..n])
+    for */
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.11*/
+/*
+//func anzahl_null3 MIT Veranschaulichungen
+func anzahl_null3(X[1..n])
+    var anzahl = 0
+    var temp = 0
+    var durchlauf = 0
+    for i = 1 to n - 2
+        for j = i + 1 to n - 1
+            for k = j + 1 to n
+                durchlauf = durchlauf + 1
+                print "Durchlauf " + durchlauf
+                print " Index " + i + " | " + "Ai ist " + A[i]
+                print " Index " + j + " | " + "Aj ist " + A[j]
+                print " Index " + k + " | " + "Ak ist " + A[k]
+                print "_____________________"
+                temp = A[i] + A[j] + A[k]
+                if temp == 0
+                    anzahl = anzahl + 1
+                    print "Ergebnis = 0"
+                print "Anzahl Nullen ist nun " + anzahl
+                print "_____________________"
+                    
+    print "Bin feddig!"
+    return "Anzahl der Tripel ist " + anzahl
+
+print anzahl_null3(A)*/
+
+////////////////////
+
+/*
+//func_anzahl null3 OHNE Veranschaulichungen
+func anzahl_null3(X[1..n])
+    var anzahl = 0
+    var temp = 0
+    for i = 1 to n - 2
+        for j = i + 1 to n - 1
+            for k = j + 1 to n
+                temp = A[i] + A[j] + A[k]
+                if temp == 0
+                    anzahl = anzahl + 1
+    return "Anzahl der Tripel ist " + anzahl
+
+print anzahl_null3(A)*/
+
+
+
+////////////////////    ////////////////////
+
+//func anzahl_null4 mit Veranschaulichungen
+/*func anzahl_null3(X[1..n])
+    var anzahl = 0
+    var temp = 0
+    var durchlauf = 0
+    for i = 1 to n - 3
+        for j = i + 1 to n - 2
+            for k = j + 1 to n - 1
+                for l = k + 1 to n
+                    durchlauf = durchlauf + 1
+                    print "Durchlauf " + durchlauf
+                    print " Index " + i + " | " + "Ai ist " + A[i]
+                    print " Index " + j + " | " + "Aj ist " + A[j]
+                    print " Index " + k + " | " + "Ak ist " + A[k]
+                    print " Index " + l + " | " + "Ak ist " + A[l]
+                    print "_____________________"
+                    temp = A[i] + A[j] + A[k] + A[l]
+                    if temp == 0
+                        anzahl = anzahl + 1
+                        print "Ergebnis = 0"
+                    print "Anzahl Nullen ist nun " + anzahl
+                    print "_____________________"
+                    
+    print "Bin feddig!"
+    return "Anzahl der Quadrupel ist " + anzahl
+
+print anzahl_null3(A)*/
+
+////////////////////
+
+/*func anzahl_null4(X[1..n])
+    var anzahl = 0
+    var temp = 0
+    var durchlauf = 0
+    for i = 1 to n - 3
+        for j = i + 1 to n - 2
+            for k = j + 1 to n - 1
+                for l = k + 1 to n
+                    durchlauf = durchlauf + 1
+                    temp = A[i] + A[j] + A[k] + A[l]
+                    if temp == 0
+                        anzahl = anzahl + 1
+    return "Anzahl der Quadrupel ist " + anzahl
+
+print anzahl_null4(A)*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.1.12
+func luhn(bank[1..n])
+    var k = n - 1
+    for i = 1 to (n/2)
+        bank[k] = bank[k] * 2
+        while bank[k] > 9
+            bank[k] = bank[k] - 9
+        k = k - 2
+    var calc = 0
+    for j = 1 to n
+        calc = calc + bank[j]
+    while calc != 0
+        calc = calc - 10
+    if calc == 0
+        return 1
+    else
+        return 0
+print luhn(bank)*/
+
+
+
+
+//___________________________________________________________________
+//___________________________________________________________________
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.2.1
+//Requires editarraydez
+func wert10(X[1..n],a,b,c)
+    editarraydez(X,a,b,c)
+    var zahl = (100 * X[1]) + (10 * X[2]) + X[3]
+    return zahl
+
+//print wert10(dez,1,5,5)*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.2.2
+//Requires editarraydez, odd
+func wert10odd(X[1..n],a,b,c)
+    editarraydez(dez,a,b,c)
+    var zahl = (100 * dez[1]) + (10 * dez[2]) + (dez[3])
+    print "Eingegebene Zahl = " + zahl
+    if odd(zahl) == 0
+        return 1
+    else
+        return 0
+print wert10odd(dez,1,5,7)*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.2.3
+//Requires editarraydez
+func wert10rest(X[1..n],a,b,c)
+    editarraydez(dez,a,b,c)
+    var zahl = (100 * dez[1]) + (10 * dez[2]) + (dez[3])
+    print "Eingegebene Zahl = " + zahl
+    while zahl >= 3
+        zahl = zahl - 3
+    return zahl
+
+print "Rest ist " + wert10rest(dez,0,0,8)*/
+
+
+
+
+//___________________________________________________________________
+//___________________________________________________________________
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.3.1
+//Requires editarraybin
+func wert2(bin[1..n],a,b,c,d)
+    editarraybin(bin,a,b,c,d)
+    var index = n
+    var dezzahl = 0
+    for i = 0 to n-1
+        bin[index] = bin[index] * 2^(0 + i)
+        index = index - 1
+    for j = 1 to n
+        dezzahl = dezzahl + bin[j]
+    return dezzahl*/
+    
+//print wert2(bin,0,1,0,1)
+
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.3.2
+//Requires editarraybin, wert2 (Aufg.2.3.1)
+
+func increment(bin[1..n],a,b,c,d)
+    var dezzahl = wert2(bin,a,b,c,d)
+    var exp = n-1
+    if dezzahl == 15
+        print "Nicht erfolgreich"
+        return 0
+    else
+        dezzahl = dezzahl +1
+        for i = 1 to n
+            if (dezzahl - 2^(0+exp)) >= 0
+                dezzahl = dezzahl - 2^(0+exp)
+                bin[i] = 1
+            else
+                bin[i] = 0
+            exp = exp - 1
+    print "Neuer Binärcode:"
+    printArray(bin)  
+    print "Erfolgreich"
+    return 1
+    
+print increment(bin,1,1,1,0)*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.3.3*/
+//Requires printArray
+//Lösung wie in Aufgabe gewünscht
+/*func add10(dez[1..n],dez2[1..m],dezresult[1..o])
+    var u = 0
+    
+    dezresult[3] = dez[3] + dez2[3]
+    if dezresult[3] >= 10
+        dezresult[3] = dezresult[3] - 10
+        u = 1
+    
+    dezresult[2] = dez[2] + u + dez2[2]
+    u = 0
+    if dezresult[2] >= 10
+        dezresult[2] = dezresult[2] - 10
+        u = 1
+    
+    dezresult[1] = dez[1] + u + dez2[1]
+    u = 0
+    if dezresult[1] >= 10
+        dezresult[1] = dezresult[1] - 10
+        u = 1
+        print "Ergebnis ist:"
+        printArray(dezresult)
+        print "Überlauf = " + u
+        print "______________________"
+        return 1
+    else
+        print "Ergebnis ist:"
+        printArray(dezresult)
+        print "Überlauf = " + u
+        print "______________________"
+        return 0
+add10(dez,dez2,dezresult)*/
+
+
+
+/*
+//Eigene Lösung 
+//Requires wertforadd, wert10 (Aufg.2.2.1), printArray
+func wert10foradd(X[1..n])
+    var zahl = (100 * X[1]) + (10 * X[2]) + X[3]
+    return zahl
+
+
+func add10(dez[1..n],dez2[1..m],dezresult[1..o])
+    var a = wert10foradd(dez)
+    var b = wert10foradd(dez2)
+    var c = a + b
+    if c > 999
+        print "Anzeige nicht möglich, Ergebnis ist höher als 999."
+        return 0
+    print "c ist " + c
+    var hcount = 0
+    var tcount = 0
+    var ocount = 0
+    while c >= 100
+        c = c - 100
+        hcount = hcount + 1
+    while c >= 10
+        c = c - 10
+        tcount = tcount + 1
+    while c >= 1
+        c = c - 1
+        ocount = ocount + 1
+    
+    dezresult[1] = hcount
+    dezresult[2] = tcount
+    dezresult[3] = ocount
+    printArray(dezresult)
+    return 1
+add10(dez,dez2,dezresult)
+*/
+
+
+
+
+/*
+__________________________________________
+Aufgabe 2.3.4
+//Requires printArray
+
+func wert2foraddbin(X[1..n])
+    var index = n
+    var dezzahl = 0
+    for i = 0 to n-1
+        X[index] = X[index] * 2^(0 + i)
+        index = index - 1
+    for j = 1 to n
+        dezzahl = dezzahl + X[j]
+    return dezzahl
+
+
+
+func addbin(bin1[1..n],bin2[1..o],binresult[1..p],binuber[1..q])
+    var bidez1 = wert2foraddbin(bin1)
+    var bidez2 = wert2foraddbin(bin2)
+    
+    var bidezres = bidez1 + bidez2
+    var uberlauf = 0
+    
+    if bidezres > 1023
+        uberlauf = bidezres - 1023
+        bidezres = 1023
+
+    var exp = p-1
+    for i = 1 to p
+        if (bidezres - 2^(0+exp)) >= 0
+            bidezres = bidezres - 2^(0+exp)
+            binresult[i] = 1
+        else
+            binresult[i] = 0
+        exp = exp - 1
+    
+    exp = q-1
+    for j = 1 to q
+        if (uberlauf - 2^(0+exp)) >= 0
+            uberlauf = uberlauf - 2^(0+exp)
+            binuber[j] = 1
+        else
+            binuber[j] = 0
+        exp = exp - 1
+    
+    print "Ergebnis ist:"
+    printArray(binresult)
+    print "_____________"
+    print "Überlauf ist:"
+    printArray(binuber)
+    print "_________________________"
+    return uberlauf
+
+addbin(bin1,bin2,binresult,binuber)*/
+
+
+
+
