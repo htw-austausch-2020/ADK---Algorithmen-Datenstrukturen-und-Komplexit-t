@@ -1,0 +1,163 @@
+/* 04 Queue und Stack - Aufgabe 4.4*/
+
+
+/*4.4.1 
+a)
+Variable Top ist ein Attribut um dem Code zu zeigen, wo er schreiben soll.
+Empty ist eine Fkt. zum Testen, ob der Stack leer ist.
+Push ist zum schreiben eines neuen Elements in ein Stack.
+Pop ist zum Auslesen und ggf. Löschen des aktuellsten Elements in Stack, es 
+nutzt die Fkt. empty, um ggf. einen Error auszugeben.
+*/
+
+/*
+//b)
+//Init
+var N = 10
+var S[N] = 0
+var top = 1
+var deq = 0
+
+//Funcs to implement
+
+func printS()
+    for i = 1 to N
+        print S[i]
+
+
+func end()
+    if top==0
+        return 1
+    else
+        return 0
+
+
+//Main funcs
+func getchar(x)
+    if top > N
+        print "Error: Full" + " Cannot get " + x
+        return 0
+    S[top] = x
+    top = top + 1
+    
+
+func putchar()
+    top = top - 1
+    if (end() = 1)
+        throw "Error: Empty"
+    print S[top]
+
+func putall()
+    while (top != 1)
+        putchar()
+    
+//___________________________________
+//Benutzerbereich, printR() und die Trennlinien sind nur zum Debugging
+getchar(1)
+getchar(4)
+getchar(5)
+putchar()
+putchar()
+putchar()
+putchar()
+print "_________"
+putall()
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Problem noch offen: 
+Selbiges wie in 4.3*/
+
+
+
+
+
+//_____________________________________________________________________________
+
+/*4.4.2 
+a)
+Variable tail ist ein Attribut um dem Code zu zeigen, wo er schreiben soll.
+Variable head ist ein Attribut um dem Code zu zeigen, wo er auslesen soll.
+
+Empty ist eine Fkt. zum Testen, ob die Queue leer ist. Sie verlgeicht, ob head
+und tail gleich groß ist. Wenn sie gleich groß sind,  ist sie leer.
+
+Fkt. enqueue ist zum schreiben eines neuen Elements in ein Stack.
+Fkt. dequeue ist zum Auslesen und ggf. Löschen des head-Element in der Queue,
+es nutzt die Fkt. empty, um ggf. einen Error auszugeben.
+*/
+
+
+
+
+//b)
+//Init
+var N = 4
+var Q[N] = 0
+var tail = 1
+var head = 1
+var deq = 0
+
+//Funcs to implement
+
+func printQ()
+    for i = 1 to N
+        print Q[i]
+
+func end()
+    if head==tail
+        return 1
+    else
+        return 0
+
+func cap(x)
+    if (5 <= x) && (x <= 10)
+        return 1
+    else
+        return 0
+
+//Main funcs
+func getchar(x)
+    if (tail > N)
+        print "Error: Full" + " //Cannot get: " + x
+        return 0
+    Q[tail] = x
+    tail = tail + 1
+    
+
+func putchar()
+    if (end() ==  1)
+        throw "Error: Empty"
+    print Q[head]
+    head = head + 1
+
+func putall()
+    var x = 0
+    while (head != tail)
+        x = Q[head]
+        if cap(x) == 0
+            print x
+        head = head + 1
+    head = 1
+    while (head != tail)
+        x = Q[head]
+        if cap(x) == 1
+            print x
+        head = head + 1
+    
+    
+//___________________________________
+//Benutzerbereich, printR() und die Trennlinien sind nur zum Debugging
+getchar(9)
+getchar(4)
+getchar(5)
+getchar(10)
+putall()
+
+// alles was 5 bis 10 beträgt soll einen Großbustaben darstellen...
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Problem noch offen: 
+Selbiges wie in 4.3
+Da dieses Problem herrscht, kann ich auch nicht testen und gucken,
+wie ich die Bedingungen für die Ascii-Codes der Groß- und Kleinbustaben 
+bei cap(x) setze...*/
