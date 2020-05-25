@@ -1,0 +1,113 @@
+/* 04 Queue und Stack - Aufgabe 4.3*/
+
+
+//Inits
+
+var N = 10
+var R[N] = 0
+
+var head = N/2
+var tail = N/2 + 1
+var size = 0
+var deq = 0
+
+
+//Funcs zum Implementieren
+
+func printR()
+    for i = 1 to N
+        print R[i]
+
+
+func full()
+    if size==N
+        return true
+    else
+        return false
+
+func empty()
+    if size==0
+        return true
+    else
+        return false
+
+func reset()
+    if (head > tail)
+        head = N/2
+        tail = N/2 + 1
+
+
+
+
+
+//Main funcs...
+
+func push_tail(x)
+    if full() || (tail > N)
+        throw "Error: Full or end of Queue reached"
+    R[tail] = x
+    tail = tail + 1
+    size = size + 1
+    
+
+func pop_tail()
+    if empty()
+        throw "Error: empty"
+    tail = tail - 1
+    deq = R[tail]
+    print "Element: " + deq + " // Index: " + tail
+    R[tail] = 0
+    size = size - 1
+    return deq
+
+//__________
+
+func push_head(x)
+    if full() || (head < 1)
+        throw "Error: Full or Start of Queue reached"
+    R[head] = x
+    head = head - 1
+    size = size + 1
+
+
+func pop_head()
+    if empty()
+        throw "Error: empty"
+    head = head + 1
+    deq = R[head]
+    print "Element: " + deq + " // Index: " + head
+    R[head] = 0
+    size = size - 1
+    return deq
+
+
+
+
+
+//_________________________________________________________________________________
+//Benutzerbereich, printR() und die Trennlinien sind nur zum Debugging
+
+push_tail(4)
+push_tail(4)
+push_head(4)
+print "size: " + size
+printR()
+print "_______________________"
+pop_head()
+pop_tail()
+printR()
+print "_______________________"
+pop_head()
+printR()
+print "_______________________"
+pop_tail()
+
+
+
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Problem noch offen: 
+Wenn ich normal var R[N] = '?' setze wird es als
+String aufgenommen und gibt dann einen fehler bei z.B. push_head(x),
+wenn ich versuche R[head] = x zu setzen, weil x dann als int genommen wird.
+Bei Herr Bauernöppels Video hat das allerdings so funktioniert.*/
